@@ -8,13 +8,13 @@ namespace Maze
     {
         static void Main (string[] args)
         {
-            if (args.Length < 1) {
-                Console.WriteLine("You must specify a target directory");
-                return;
-            }
-            string dest = args[0];
+//            if (args.Length < 1) {
+//                Console.WriteLine("You must specify a target directory");
+//                return;
+//            }
+//            string dest = args[0];
 
-            AnvilWorld world = AnvilWorld.Open("F:\\Minecraft\\test");
+            AnvilWorld world = AnvilWorld.Open("/Users/" + System.Environment.UserName + "/Library/Application Support/minecraft/saves/Maze");
             BlockManager bm = world.GetBlockManager();
 
             bm.AutoLight = false;
@@ -82,7 +82,7 @@ namespace Maze
         public Grid ()
         {
             originx = 0;
-            originy = 27;
+            originy = 90;
             originz = 0;
 
             xlen = 5;
@@ -130,8 +130,8 @@ namespace Maze
             for (int xi = 0; xi < cellxlen + 2 * wallxwidth; xi++) {
                 for (int zi = 0; zi < cellzlen + 2 * wallzwidth; zi++) {
                     for (int yi = 0; yi < wallywidth; yi++) {
-                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.BEDROCK);
-                        bm.SetID(ox + xi, oy + yi + cellylen + wallywidth, oz + zi, (int)BlockType.BEDROCK);
+                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.GLASS);
+                        bm.SetID(ox + xi, oy + yi + cellylen + wallywidth, oz + zi, (int)BlockType.GLASS);
                     }
                 }
             }
@@ -139,8 +139,8 @@ namespace Maze
             for (int xi = 0; xi < cellxlen + 2 * wallxwidth; xi++) {
                 for (int zi = 0; zi < wallzwidth; zi++) {
                     for (int yi = 0; yi < cellylen + 2 * wallywidth; yi++) {
-                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.BEDROCK);
-                        bm.SetID(ox + xi, oy + yi, oz + zi + cellzlen + wallzwidth, (int)BlockType.BEDROCK);
+                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.GLASS);
+                        bm.SetID(ox + xi, oy + yi, oz + zi + cellzlen + wallzwidth, (int)BlockType.GLASS);
                     }
                 }
             }
@@ -148,8 +148,8 @@ namespace Maze
             for (int xi = 0; xi < wallxwidth; xi++) {
                 for (int zi = 0; zi < cellzlen + 2 * wallzwidth; zi++) {
                     for (int yi = 0; yi < cellylen + 2 * wallywidth; yi++) {
-                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.BEDROCK);
-                        bm.SetID(ox + xi + cellxlen + wallxwidth, oy + yi, oz + zi, (int)BlockType.BEDROCK);
+                        bm.SetID(ox + xi, oy + yi, oz + zi, (int)BlockType.GLASS);
+                        bm.SetID(ox + xi + cellxlen + wallxwidth, oy + yi, oz + zi, (int)BlockType.GLASS);
                     }
                 }
             }
@@ -205,7 +205,7 @@ namespace Maze
                     int xc = xx + wallxwidth + (cellxlen / 2);
                     int zc = zz + wallzwidth + (cellzlen / 2);
 
-                    bm.SetID(xc, yy + yi, zc, (int)BlockType.BEDROCK);
+                    bm.SetID(xc, yy + yi, zc, (int)BlockType.GLASS);
                     bm.SetID(xc - 1, yy + yi, zc, (int)BlockType.LADDER);
                     bm.SetData(xc - 1, yy + yi, zc, 4);
                     bm.SetID(xc + 1, yy + yi, zc, (int)BlockType.LADDER);

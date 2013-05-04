@@ -163,6 +163,9 @@ namespace Substrate
         public const int WOOD_BUTTON = 143;
         public const int HEADS = 144;
         public const int ANVIL = 145;
+
+        public const int QUARTZ_BLOCK = 155;
+        public const int QUARTZ_STAIRS = 156;
     }
 
     /// <summary>
