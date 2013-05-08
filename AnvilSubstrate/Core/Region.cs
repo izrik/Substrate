@@ -28,8 +28,6 @@ namespace Substrate.Core
 
         protected RegionManager _regionMan;
 
-        private static Regex _namePattern = new Regex("r\\.(-?[0-9]+)\\.(-?[0-9]+)\\.mca$");
-
         private WeakReference _regionFile;
 
         protected ChunkCache _cache;

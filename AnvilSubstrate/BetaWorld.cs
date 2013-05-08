@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Substrate.Core;
@@ -29,7 +29,7 @@ namespace Substrate
         private Dictionary<int, ChunkCache> _caches;
 
         private PlayerManager _playerMan;
-        private BetaDataManager _dataMan;
+        private DataManager _dataMan;
 
         private int _prefCacheSize = 256;
 
@@ -139,9 +139,9 @@ namespace Substrate
         /// Gets a <see cref="BetaDataManager"/> for managing data resources, such as maps.
         /// </summary>
         /// <returns>A <see cref="BetaDataManager"/> for this world.</returns>
-        public new BetaDataManager GetDataManager ()
+        public new DataManager GetDataManager ()
         {
-            return GetDataManagerVirt() as BetaDataManager;
+            return GetDataManagerVirt() as DataManager;
         }
 
         /// <inherits />
@@ -272,7 +272,7 @@ namespace Substrate
                 return _dataMan;
             }
 
-            _dataMan = new BetaDataManager(this);
+            _dataMan = new DataManager(this);
             return _dataMan;
         }
 

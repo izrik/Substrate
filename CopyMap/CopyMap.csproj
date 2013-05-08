@@ -37,9 +37,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Substrate %28NET4%29.csproj">
-      <Project>{7264A1C4-AB4A-4437-B252-7379B98B5509}</Project>
-      <Name>Substrate (NET4)</Name>
+    <ProjectReference Include="..\AnvilSubstrate\AnvilSubstrate.csproj">
+      <Project>{9EC46897-91C8-4A45-9241-54E588EC64A7}</Project>
+      <Name>AnvilSubstrate</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

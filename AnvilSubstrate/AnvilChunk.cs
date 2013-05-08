@@ -37,11 +37,6 @@ namespace Substrate
         private const int YDIM = 256;
         private const int ZDIM = 16;
 
-        private NbtTree _tree;
-
-        private int _cx;
-        private int _cz;
-
         private AnvilSection[] _sections;
 
         private IDataArray3 _blocks;
@@ -56,52 +51,33 @@ namespace Substrate
         private TagNodeList _tileEntities;
         private TagNodeList _tileTicks;
 
-        private AlphaBlockCollection _blockManager;
-        private EntityCollection _entityManager;
-
-
         private AnvilChunk ()
         {
             _sections = new AnvilSection[16];
         }
 
-        public int X
-        {
-            get { return _cx; }
-        }
+        public int X { get; protected set; }
 
-        public int Z
-        {
-            get { return _cz; }
-        }
+        public int Z { get; protected set; }
 
-        public AlphaBlockCollection Blocks
-        {
-            get { return _blockManager; }
-        }
+        public AlphaBlockCollection Blocks { get; protected set; }
 
-        public EntityCollection Entities
-        {
-            get { return _entityManager; }
-        }
+        public EntityCollection Entities { get; protected set; }
 
-        public NbtTree Tree
-        {
-            get { return _tree; }
-        }
+        public NbtTree Tree { get; protected set; }
 
         public bool IsTerrainPopulated
         {
-            get { return _tree.Root["Level"].ToTagCompound()["TerrainPopulated"].ToTagByte() == 1; }
-            set { _tree.Root["Level"].ToTagCompound()["TerrainPopulated"].ToTagByte().Data = (byte)(value ? 1 : 0); }
+            get { return Tree.Root["Level"].ToTagCompound()["TerrainPopulated"].ToTagByte() == 1; }
+            set { Tree.Root["Level"].ToTagCompound()["TerrainPopulated"].ToTagByte().Data = (byte)(value ? 1 : 0); }
         }
 
         public static AnvilChunk Create (int x, int z)
         {
             AnvilChunk c = new AnvilChunk();
 
-            c._cx = x;
-            c._cz = z;
+            c.X = x;
+            c.Z = z;
 
             c.BuildNBTTree();
             return c;
@@ -128,16 +104,16 @@ namespace Substrate
         /// <param name="z">Global Z-coordinate.</param>
         public virtual void SetLocation (int x, int z)
         {
-            int diffx = (x - _cx) * XDIM;
-            int diffz = (z - _cz) * ZDIM;
+            int diffx = (x - X) * XDIM;
+            int diffz = (z - Z) * ZDIM;
 
             // Update chunk position
 
-            _cx = x;
-            _cz = z;
+            X = x;
+            Z = z;
 
-            _tree.Root["Level"].ToTagCompound()["xPos"].ToTagInt().Data = x;
-            _tree.Root["Level"].ToTagCompound()["zPos"].ToTagInt().Data = z;
+            Tree.Root["Level"].ToTagCompound()["xPos"].ToTagInt().Data = x;
+            Tree.Root["Level"].ToTagCompound()["zPos"].ToTagInt().Data = z;
 
             // Update tile entity coordinates
 
@@ -181,14 +157,14 @@ namespace Substrate
             // Update entity coordinates
 
             List<TypedEntity> entities = new List<TypedEntity>();
-            foreach (TypedEntity entity in _entityManager) {
+            foreach (TypedEntity entity in Entities) {
                 entity.MoveBy(diffx, 0, diffz);
                 entities.Add(entity);
             }
 
             _entities.Clear();
             foreach (TypedEntity entity in entities) {
-                _entityManager.Add(entity);
+                Entities.Add(entity);
             }
         }
 
@@ -218,9 +194,9 @@ namespace Substrate
                 return null;
             }
 
-            _tree = new NbtTree(ctree);
+            Tree = new NbtTree(ctree);
 
-            TagNodeCompound level = _tree.Root["Level"] as TagNodeCompound;
+            TagNodeCompound level = Tree.Root["Level"] as TagNodeCompound;
 
             TagNodeList sections = level["Sections"] as TagNodeList;
             foreach (TagNodeCompound section in sections) {
@@ -286,11 +262,11 @@ namespace Substrate
                 _tileTicks = level["TileTicks"] as TagNodeList;
             }
 
-            _cx = level["xPos"].ToTagInt();
-            _cz = level["zPos"].ToTagInt();
+            X = level["xPos"].ToTagInt();
+            Z = level["zPos"].ToTagInt();
 
-            _blockManager = new AlphaBlockCollection(_blocks, _data, _blockLight, _skyLight, _heightMap, _tileEntities, _tileTicks);
-            _entityManager = new EntityCollection(_entities);
+            Blocks = new AlphaBlockCollection(_blocks, _data, _blockLight, _skyLight, _heightMap, _tileEntities, _tileTicks);
+            Entities = new EntityCollection(_entities);
 
             return this;
         }
@@ -316,7 +292,7 @@ namespace Substrate
 
         public TagNode BuildTree ()
         {
-            TagNodeCompound level = _tree.Root["Level"] as TagNodeCompound;
+            TagNodeCompound level = Tree.Root["Level"] as TagNodeCompound;
             TagNodeCompound levelCopy = new TagNodeCompound();
             foreach (KeyValuePair<string, TagNode> node in level)
                 levelCopy.Add(node.Key, node.Value);
@@ -346,16 +322,16 @@ namespace Substrate
 
         public AnvilChunk Copy ()
         {
-            return AnvilChunk.Create(_tree.Copy());
+            return AnvilChunk.Create(Tree.Copy());
         }
 
         #endregion
 
         private void BuildConditional ()
         {
-            TagNodeCompound level = _tree.Root["Level"] as TagNodeCompound;
-            if (_tileTicks != _blockManager.TileTicks && _blockManager.TileTicks.Count > 0) {
-                _tileTicks = _blockManager.TileTicks;
+            TagNodeCompound level = Tree.Root["Level"] as TagNodeCompound;
+            if (_tileTicks != Blocks.TileTicks && Blocks.TileTicks.Count > 0) {
+                _tileTicks = Blocks.TileTicks;
                 level["TileTicks"] = _tileTicks;
             }
         }
@@ -410,15 +386,15 @@ namespace Substrate
             level.Add("TileEntities", _tileEntities);
             level.Add("TileTicks", _tileTicks);
             level.Add("LastUpdate", new TagNodeLong(Timestamp()));
-            level.Add("xPos", new TagNodeInt(_cx));
-            level.Add("zPos", new TagNodeInt(_cz));
+            level.Add("xPos", new TagNodeInt(X));
+            level.Add("zPos", new TagNodeInt(Z));
             level.Add("TerrainPopulated", new TagNodeByte());
 
-            _tree = new NbtTree();
-            _tree.Root.Add("Level", level);
+            Tree = new NbtTree();
+            Tree.Root.Add("Level", level);
 
-            _blockManager = new AlphaBlockCollection(_blocks, _data, _blockLight, _skyLight, _heightMap, _tileEntities);
-            _entityManager = new EntityCollection(_entities);
+            Blocks = new AlphaBlockCollection(_blocks, _data, _blockLight, _skyLight, _heightMap, _tileEntities);
+            Entities = new EntityCollection(_entities);
         }
 
         private int Timestamp ()

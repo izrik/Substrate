@@ -108,7 +108,6 @@
     <Compile Include="Core\RegionKey.cs" />
     <Compile Include="Core\RegionManager.cs" />
     <Compile Include="Core\UnboundedBlockInterface.cs" />
-    <Compile Include="Data\BetaDataManager.cs" />
     <Compile Include="Data\DataExceptions.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\Map.cs" />

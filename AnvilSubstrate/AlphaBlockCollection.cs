@@ -45,23 +45,23 @@ namespace Substrate
         /// <param name="xdim">The length of the X-dimension of the collection.</param>
         /// <param name="ydim">The length of the Y-dimension of the collection.</param>
         /// <param name="zdim">The length of the Z-dimension of the collection.</param>
-        [Obsolete]
-        public AlphaBlockCollection (int xdim, int ydim, int zdim)
-        {
-            _blocks = new XZYByteArray(xdim, ydim, zdim);
-            _data = new XZYNibbleArray(xdim, ydim, zdim);
-            _blockLight = new XZYNibbleArray(xdim, ydim, zdim);
-            _skyLight = new XZYNibbleArray(xdim, ydim, zdim);
-            _heightMap = new ZXByteArray(xdim, zdim);
-            _tileEntities = new TagNodeList(TagType.TAG_COMPOUND);
-            _tileTicks = new TagNodeList(TagType.TAG_COMPOUND);
-
-            _xdim = xdim;
-            _ydim = ydim;
-            _zdim = zdim;
-
-            Refresh();
-        }
+//        [Obsolete]
+//        public AlphaBlockCollection (int xdim, int ydim, int zdim)
+//        {
+//            _blocks = new XZYByteArray(xdim, ydim, zdim);
+//            _data = new XZYNibbleArray(xdim, ydim, zdim);
+//            _blockLight = new XZYNibbleArray(xdim, ydim, zdim);
+//            _skyLight = new XZYNibbleArray(xdim, ydim, zdim);
+//            _heightMap = new ZXByteArray(xdim, zdim);
+//            _tileEntities = new TagNodeList(TagType.TAG_COMPOUND);
+//            _tileTicks = new TagNodeList(TagType.TAG_COMPOUND);
+//
+//            _xdim = xdim;
+//            _ydim = ydim;
+//            _zdim = zdim;
+//
+//            Refresh();
+//        }
 
         /// <summary>
         /// Creates a new <see cref="AlphaBlockCollection"/> overlay on top of Alpha-specific units of data.
