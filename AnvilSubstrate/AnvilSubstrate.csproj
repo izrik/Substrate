@@ -46,9 +46,6 @@
     <Compile Include="AnvilRegionManager.cs" />
     <Compile Include="AnvilSection.cs" />
     <Compile Include="AnvilWorld.cs" />
-    <Compile Include="BetaRegion.cs" />
-    <Compile Include="BetaRegionManager.cs" />
-    <Compile Include="BetaWorld.cs" />
     <Compile Include="BiomeInfo.cs" />
     <Compile Include="BlockInfo.cs" />
     <Compile Include="BlockManager.cs" />
