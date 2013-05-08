@@ -22,11 +22,11 @@ namespace Substrate
 
         private Level _level;
 
-        private Dictionary<int, AnvilRegionManager> _regionMgrs;
-        private Dictionary<int, RegionChunkManager> _chunkMgrs;
-        private Dictionary<int, BlockManager> _blockMgrs;
+        private Dictionary<Dimension, AnvilRegionManager> _regionMgrs;
+        private Dictionary<Dimension, RegionChunkManager> _chunkMgrs;
+        private Dictionary<Dimension, BlockManager> _blockMgrs;
 
-        private Dictionary<int, ChunkCache> _caches;
+        private Dictionary<Dimension, ChunkCache> _caches;
 
         private PlayerManager _playerMan;
         private DataManager _dataMan;
@@ -37,11 +37,11 @@ namespace Substrate
         {
             _dataDir = _DATA_DIR;
 
-            _regionMgrs = new Dictionary<int, AnvilRegionManager>();
-            _chunkMgrs = new Dictionary<int, RegionChunkManager>();
-            _blockMgrs = new Dictionary<int, BlockManager>();
+            _regionMgrs = new Dictionary<Dimension, AnvilRegionManager>();
+            _chunkMgrs = new Dictionary<Dimension, RegionChunkManager>();
+            _blockMgrs = new Dictionary<Dimension, BlockManager>();
 
-            _caches = new Dictionary<int, ChunkCache>();
+            _caches = new Dictionary<Dimension, ChunkCache>();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Substrate
         /// <remarks>Get a <see cref="BlockManager"/> if you need to manage blocks as a global, unbounded matrix.  This abstracts away
         /// any higher-level organizational divisions.  If your task is going to be heavily performance-bound, consider getting a
         /// <see cref="RegionChunkManager"/> instead and working with blocks on a chunk-local level.</remarks>
-        public BlockManager GetBlockManager (int dim)
+        public BlockManager GetBlockManager (Dimension dim)
         {
             return GetBlockManagerVirt(dim) as BlockManager;
         }
@@ -93,7 +93,7 @@ namespace Substrate
         /// <param name="dim">The id of the dimension to look up.</param>
         /// <returns>A <see cref="RegionChunkManager"/> tied to the given dimension in this world.</returns>
         /// <remarks>Get a <see cref="RegionChunkManager"/> if you you need to work with easily-digestible, bounded chunks of blocks.</remarks>
-        public RegionChunkManager GetChunkManager (int dim)
+        public RegionChunkManager GetChunkManager (Dimension dim)
         {
             return GetChunkManagerVirt(dim) as RegionChunkManager;
         }
@@ -116,7 +116,7 @@ namespace Substrate
         /// <returns>A <see cref="RegionManager"/> tied to the given dimension in this world.</returns>
         /// <remarks>Regions are a higher-level unit of organization for blocks unique to worlds created in Beta 1.3 and beyond.
         /// Consider using the <see cref="RegionChunkManager"/> if you are interested in working with blocks.</remarks>
-        public AnvilRegionManager GetRegionManager (int dim)
+        public AnvilRegionManager GetRegionManager (Dimension dim)
         {
             AnvilRegionManager rm;
             if (_regionMgrs.TryGetValue(dim, out rm)) {
@@ -153,8 +153,8 @@ namespace Substrate
         {
             _level.Save();
 
-            foreach (KeyValuePair<int, RegionChunkManager> cm in _chunkMgrs) {
-                cm.Value.Save();
+            foreach (RegionChunkManager cm in _chunkMgrs.Values) {
+                cm.Save();
             }
         }
 
@@ -172,7 +172,7 @@ namespace Substrate
         /// </summary>
         /// <param name="dim">The id of a dimension to look up.</param>
         /// <returns>The <see cref="ChunkCache"/> for the given dimension, or null if the dimension was not found.</returns>
-        public ChunkCache GetChunkCache (int dim)
+        public ChunkCache GetChunkCache (Dimension dim)
         {
             if (_caches.ContainsKey(dim)) {
                 return _caches[dim];
@@ -237,7 +237,7 @@ namespace Substrate
         /// </summary>
         /// <param name="dim">The given dimension to fetch an <see cref="IBlockManager"/> for.</param>
         /// <returns>An <see cref="IBlockManager"/> for the given dimension in the world.</returns>
-        protected IBlockManager GetBlockManagerVirt (int dim)
+        protected IBlockManager GetBlockManagerVirt (Dimension dim)
         {
             BlockManager rm;
             if (_blockMgrs.TryGetValue(dim, out rm)) {
@@ -253,7 +253,7 @@ namespace Substrate
         /// </summary>
         /// <param name="dim">The given dimension to fetch an <see cref="IChunkManager"/> for.</param>
         /// <returns>An <see cref="IChunkManager"/> for the given dimension in the world.</returns>
-        protected IChunkManager GetChunkManagerVirt (int dim)
+        protected IChunkManager GetChunkManagerVirt (Dimension dim)
         {
             RegionChunkManager rm;
             if (_chunkMgrs.TryGetValue(dim, out rm)) {
@@ -294,7 +294,7 @@ namespace Substrate
             return _dataMan;
         }
 
-        private void OpenDimension (int dim)
+        private void OpenDimension (Dimension dim)
         {
             string path = Path;
             if (dim == Dimension.DEFAULT) {
