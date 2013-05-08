@@ -3,7 +3,6 @@ using Substrate.Core;
 
 namespace Substrate
 {
-
     public class AnvilBlockManager : BlockManager
     {
         public AnvilBlockManager (IChunkManager cm)
@@ -23,8 +22,4 @@ namespace Substrate
         }
     }
 
-    /// <summary>
-    /// Represents an Alpha-compatible interface for globally managing blocks.
-    /// </summary>
-    
 }

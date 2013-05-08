@@ -21,9 +21,4 @@ namespace Substrate
             chunkZLog = Log2(chunkZDim);
         }
     }
-
-    /// <summary>
-    /// Represents an Alpha-compatible interface for globally managing blocks.
-    /// </summary>
-    
 }
