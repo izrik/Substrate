@@ -201,9 +201,7 @@
     <Compile Include="Core\IVersion10BlockManager.cs" />
     <Compile Include="Core\IBlockManager.cs" />
     <Compile Include="Core\IVersion10BlockRef.cs" />
-    <Compile Include="Core\IVersion10Block.cs" />
     <Compile Include="Core\IAlphaBlockRef.cs" />
-    <Compile Include="Core\IAlphaBlock.cs" />
     <Compile Include="Core\IActiveBlock.cs" />
     <Compile Include="Core\BlockCollectionEdge.cs" />
     <Compile Include="Core\IBlock.cs" />
