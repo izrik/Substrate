@@ -183,7 +183,7 @@ namespace Substrate
         {
             ResolveOpen += AnvilWorld.OnResolveOpen;
 //            ResolveOpen += BetaWorld.OnResolveOpen;
-            ResolveOpen += AlphaWorld.OnResolveOpen;
+//            ResolveOpen += AlphaWorld.OnResolveOpen;
         }
     }
 }
