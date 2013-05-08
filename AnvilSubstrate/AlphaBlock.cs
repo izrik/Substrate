@@ -21,17 +21,17 @@ namespace Substrate
         private TileEntity _tileEntity;
         private TileTick _tileTick;
 
-        /// <summary>
-        /// Create a new <see cref="AlphaBlock"/> instance of the given type with default data.
-        /// </summary>
-        /// <param name="id">The id (type) of the block.</param>
-        /// <remarks>If the specified block type requires a Tile Entity as part of its definition, a default
-        /// <see cref="TileEntity"/> of the appropriate type will automatically be created.</remarks>
-        public AlphaBlock (int id)
-        {
-            _id = id;
-            UpdateTileEntity(0, id);
-        }
+//        /// <summary>
+//        /// Create a new <see cref="AlphaBlock"/> instance of the given type with default data.
+//        /// </summary>
+//        /// <param name="id">The id (type) of the block.</param>
+//        /// <remarks>If the specified block type requires a Tile Entity as part of its definition, a default
+//        /// <see cref="TileEntity"/> of the appropriate type will automatically be created.</remarks>
+//        public AlphaBlock (int id)
+//        {
+//            _id = id;
+//            UpdateTileEntity(0, id);
+//        }
 
         /// <summary>
         /// Create a new <see cref="AlphaBlock"/> instance of the given type and data value.
