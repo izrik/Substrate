@@ -85,7 +85,6 @@
     <Compile Include="Core\CompositeDataArray.cs" />
     <Compile Include="Core\FusedDataArray.cs" />
     <Compile Include="Core\IndexedLinkedList.cs" />
-    <Compile Include="Core\Interface.cs" />
     <Compile Include="Core\LRUCache.cs" />
     <Compile Include="Core\NBTFile.cs" />
     <Compile Include="Core\NibbleArray.cs" />
@@ -101,7 +100,6 @@
     <Compile Include="Data\MapConverter.cs" />
     <Compile Include="Data\MapFile.cs" />
     <Compile Include="Data\MapManager.cs" />
-    <Compile Include="Data\MapManagerInterface.cs" />
     <Compile Include="Entities\EntityAnimal.cs" />
     <Compile Include="Entities\EntityArrow.cs" />
     <Compile Include="Entities\EntityBlaze.cs" />
@@ -234,6 +232,8 @@
     <Compile Include="Core\IRegionManager.cs" />
     <Compile Include="Core\IRegionContainer.cs" />
     <Compile Include="Core\IRegion.cs" />
+    <Compile Include="Data\IMapManager.cs" />
+    <Compile Include="Core\ICopyable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
