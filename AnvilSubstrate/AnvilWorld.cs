@@ -24,7 +24,7 @@ namespace Substrate
 
         private Dictionary<Dimension, AnvilRegionManager> _regionMgrs;
         private Dictionary<Dimension, RegionChunkManager> _chunkMgrs;
-        private Dictionary<Dimension, BlockManager> _blockMgrs;
+        private Dictionary<Dimension, AnvilBlockManager> _blockMgrs;
 
         private Dictionary<Dimension, ChunkCache> _caches;
 
@@ -39,7 +39,7 @@ namespace Substrate
 
             _regionMgrs = new Dictionary<Dimension, AnvilRegionManager>();
             _chunkMgrs = new Dictionary<Dimension, RegionChunkManager>();
-            _blockMgrs = new Dictionary<Dimension, BlockManager>();
+            _blockMgrs = new Dictionary<Dimension, AnvilBlockManager>();
 
             _caches = new Dictionary<Dimension, ChunkCache>();
         }
@@ -59,9 +59,9 @@ namespace Substrate
         /// <remarks>Get a <see cref="BlockManager"/> if you need to manage blocks as a global, unbounded matrix.  This abstracts away
         /// any higher-level organizational divisions.  If your task is going to be heavily performance-bound, consider getting a
         /// <see cref="RegionChunkManager"/> instead and working with blocks on a chunk-local level.</remarks>
-        public BlockManager GetBlockManager ()
+        public AnvilBlockManager GetBlockManager ()
         {
-            return GetBlockManagerVirt(Dimension.DEFAULT) as BlockManager;
+            return GetBlockManagerVirt(Dimension.DEFAULT) as AnvilBlockManager;
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace Substrate
         /// <remarks>Get a <see cref="BlockManager"/> if you need to manage blocks as a global, unbounded matrix.  This abstracts away
         /// any higher-level organizational divisions.  If your task is going to be heavily performance-bound, consider getting a
         /// <see cref="RegionChunkManager"/> instead and working with blocks on a chunk-local level.</remarks>
-        public BlockManager GetBlockManager (Dimension dim)
+        public AnvilBlockManager GetBlockManager (Dimension dim)
         {
-            return GetBlockManagerVirt(dim) as BlockManager;
+            return GetBlockManagerVirt(dim) as AnvilBlockManager;
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Substrate
         /// <returns>An <see cref="IBlockManager"/> for the given dimension in the world.</returns>
         protected IBlockManager GetBlockManagerVirt (Dimension dim)
         {
-            BlockManager rm;
+            AnvilBlockManager rm;
             if (_blockMgrs.TryGetValue(dim, out rm)) {
                 return rm;
             }
@@ -313,7 +313,7 @@ namespace Substrate
 
             AnvilRegionManager rm = new AnvilRegionManager(path, cc);
             RegionChunkManager cm = new RegionChunkManager(rm, cc);
-            BlockManager bm = new AnvilBlockManager(cm);
+            AnvilBlockManager bm = new AnvilBlockManager(cm);
 
             _regionMgrs[dim] = rm;
             _chunkMgrs[dim] = cm;

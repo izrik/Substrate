@@ -46,7 +46,6 @@
     <Compile Include="AnvilWorld.cs" />
     <Compile Include="BiomeInfo.cs" />
     <Compile Include="BlockInfo.cs" />
-    <Compile Include="BlockManager.cs" />
     <Compile Include="CacheTable.cs" />
     <Compile Include="ChunkRef.cs" />
     <Compile Include="Data.cs" />
