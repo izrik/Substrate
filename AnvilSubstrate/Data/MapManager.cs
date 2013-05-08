@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -13,13 +13,13 @@ namespace Substrate.Data
     /// <remarks>This manager is intended for map files stored in standard compressed NBT format.</remarks>
     public class MapManager : IMapManager, IEnumerable<Map>
     {
-        private NbtWorld _world;
+        private AnvilWorld _world;
 
         /// <summary>
         /// Create a new <see cref="MapManager"/> for a given world.
         /// </summary>
         /// <param name="world">World containing data files.</param>
-        public MapManager (NbtWorld world)
+        public MapManager (AnvilWorld world)
         {
             _world = world;
         }

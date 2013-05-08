@@ -8,7 +8,7 @@ namespace Substrate.Core
     /// </summary>
     /// <param name="path">The path to the directory of the world to open.</param>
     /// <returns>An instance of a concrete derivative of <see cref="NbtWorld"/>.</returns>
-    public delegate NbtWorld OpenWorldCallback (string path);
+    public delegate AnvilWorld OpenWorldCallback (string path);
 
     /// <summary>
     /// Event arugments and response data for any handlers trying to determine if they can open a given world.

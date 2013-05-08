@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Substrate.Nbt;
 using System.IO;
@@ -62,9 +62,9 @@ namespace Substrate.Data
 
         private TagNodeCompound _source;
 
-        private NbtWorld _world;
+        private AnvilWorld _world;
 
-        public DataManager (NbtWorld world)
+        public DataManager (AnvilWorld world)
         {
             _world = world;
 

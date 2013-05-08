@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Substrate.Core;
 using Substrate.Nbt;
@@ -62,7 +62,7 @@ namespace Substrate
 
         private TagNodeCompound _source;
 
-        private NbtWorld _world;
+        private AnvilWorld _world;
 
         private long _time;
         private long _lastPlayed;
@@ -258,7 +258,7 @@ namespace Substrate
         /// Creates a new <see cref="Level"/> object with reasonable defaults tied to the given world.
         /// </summary>
         /// <param name="world">The world that the <see cref="Level"/> should be tied to.</param>
-        public Level (NbtWorld world)
+        public Level (AnvilWorld world)
         {
             _world = world;
 

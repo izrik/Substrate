@@ -61,7 +61,6 @@
     <Compile Include="ItemInfo.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelIOException.cs" />
-    <Compile Include="NbtWorld.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerIOException.cs" />
