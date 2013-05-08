@@ -39,7 +39,6 @@
     <Compile Include="AlphaBlockCollection.cs" />
     <Compile Include="AlphaBlockRef.cs" />
     <Compile Include="AlphaChunk.cs" />
-    <Compile Include="AlphaChunkManager.cs" />
     <Compile Include="AnvilChunk.cs" />
     <Compile Include="AnvilRegion.cs" />
     <Compile Include="AnvilRegionManager.cs" />
