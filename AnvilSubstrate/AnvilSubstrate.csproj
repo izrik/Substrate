@@ -198,7 +198,6 @@
     <Compile Include="Vendor\DotNetZip\Zlib\ZlibCodec.cs" />
     <Compile Include="Vendor\DotNetZip\Zlib\ZlibConstants.cs" />
     <Compile Include="Vendor\DotNetZip\Zlib\ZlibStream.cs" />
-    <Compile Include="AlphaBlockManager.cs" />
     <Compile Include="AnvilBlockManager.cs" />
     <Compile Include="Core\IVersion10BlockManager.cs" />
     <Compile Include="Core\IBlockManager.cs" />
