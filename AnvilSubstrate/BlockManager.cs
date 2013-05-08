@@ -29,36 +29,20 @@ namespace Substrate
 
         protected ChunkRef cache;
 
-        private bool _autoLight = true;
-        private bool _autoFluid = false;
-        private bool _autoTileTick = false;
-
         /// <summary>
         /// Gets or sets a value indicating whether changes to blocks will trigger automatic lighting updates.
         /// </summary>
-        public bool AutoLight
-        {
-            get { return _autoLight; }
-            set { _autoLight = value; }
-        }
+        public bool AutoLight;
 
         /// <summary>
         /// Gets or sets a value indicating whether changes to blocks will trigger automatic fluid updates.
         /// </summary>
-        public bool AutoFluid
-        {
-            get { return _autoFluid; }
-            set { _autoFluid = value; }
-        }
+        public bool AutoFluid;
 
         /// <summary>
         /// Gets or sets a value indicating whether changes to blocks will trigger automatic fluid updates.
         /// </summary>
-        public bool AutoTileTick
-        {
-            get { return _autoTileTick; }
-            set { _autoTileTick = value; }
-        }
+        public bool AutoTileTick;
 
         /// <summary>
         /// Constructs a new <see cref="BlockManager"/> instance on top of the given <see cref="IChunkManager"/>.
@@ -213,9 +197,9 @@ namespace Substrate
             bool autofluid = cache.Blocks.AutoFluid;
             bool autoTileTick = cache.Blocks.AutoTileTick;
 
-            cache.Blocks.AutoLight = _autoLight;
-            cache.Blocks.AutoFluid = _autoFluid;
-            cache.Blocks.AutoTileTick = _autoTileTick;
+            cache.Blocks.AutoLight = AutoLight;
+            cache.Blocks.AutoFluid = AutoFluid;
+            cache.Blocks.AutoTileTick = AutoTileTick;
 
             cache.Blocks.SetID(x & chunkXMask, y & chunkYMask, z & chunkZMask, id);
 
