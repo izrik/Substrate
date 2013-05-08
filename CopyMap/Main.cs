@@ -132,10 +132,10 @@ namespace CopyMap
                     to.ChunkManager.DeleteChunk(cr.X, cr.Z);
                 }
                 to.ChunkManager.SetChunk(cr.X, cr.Z, cr);
-                to.World.GetBlockManager().SetID(cr.X * 16 + 2, 254, cr.Z * 16 + 2, BlockType.DIRT);
-                to.World.GetBlockManager().SetID(cr.X * 16 + 2, 254, cr.Z * 16 - 2, BlockType.DIRT);
-                to.World.GetBlockManager().SetID(cr.X * 16 - 2, 254, cr.Z * 16 + 2, BlockType.DIRT);
-                to.World.GetBlockManager().SetID(cr.X * 16 - 2, 254, cr.Z * 16 - 2, BlockType.DIRT);
+                to.World.GetBlockManager().SetID(cr.X * 16 + 2, 254, cr.Z * 16 + 2, (int)BlockType.DIRT);
+                to.World.GetBlockManager().SetID(cr.X * 16 + 2, 254, cr.Z * 16 - 2, (int)BlockType.DIRT);
+                to.World.GetBlockManager().SetID(cr.X * 16 - 2, 254, cr.Z * 16 + 2, (int)BlockType.DIRT);
+                to.World.GetBlockManager().SetID(cr.X * 16 - 2, 254, cr.Z * 16 - 2, (int)BlockType.DIRT);
             }
 
             to.World.Save();
