@@ -33,7 +33,6 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AlphaBlock.cs" />
     <Compile Include="AlphaBlockCollection.cs" />
